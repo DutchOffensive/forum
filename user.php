@@ -250,6 +250,7 @@ function timeAgo($time_ago){
   
   
                
+ <span class="glyphicon glyphicon-user" aria-hidden="true"></span><?php echo $userRow['name']; ?>
  
  </a>
  </li>
@@ -263,7 +264,7 @@ function timeAgo($time_ago){
  
  -->
  <li>
-  <a href="my_task.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
+  <a href="mytask.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
  </li>
  
  <li>

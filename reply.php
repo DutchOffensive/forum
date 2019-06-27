@@ -280,7 +280,7 @@ function timeAgo($time_ago){
     ?>
   <?php
 $title = $_GET['s_title'];
-$p_id = $_GET['id'];
+//$p_id = $_GET['id'];
 
 $sql1=mysqli_query($con,"select * from posts where post_id='$p_id'");
                     while($comnt1=mysqli_fetch_array($sql1)){

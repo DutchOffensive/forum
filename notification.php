@@ -84,7 +84,7 @@ function timeAgo($time_ago){
      $sta=$_POST["status"];
      $uid=$_SESSION["id"];
      // maak de query af, wat moet er worden opgeslagen?
-     $sql=mysqli_query($con,"insert into posts(usr_id_p,status_title,status,status_image,status_time");
+     //$sql=mysqli_query($con,"insert into posts(usr_id_p,status_title,status,status_image,status_time) 
      
      if($sql)
      {
@@ -275,7 +275,7 @@ function timeAgo($time_ago){
  
  -->
  <li>
-  <a href="my_task.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
+  <a href="mytask.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
  </li>
  
  <li>

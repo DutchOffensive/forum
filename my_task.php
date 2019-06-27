@@ -15,8 +15,9 @@
   	 $status_tit=$_POST["status_title"];
      $sta=$_POST["status"];
      $uid=$_SESSION["id"];
-    // $sql=
-    // sla de post op en bewaar het resultaat in $sql
+     $sql=mysqli_query($con,"insert into posts(usr_id_p,status_title,status,status_image,status_time) 
+     	values('$uid','$status_tit','$sta','',now());");    
+	  // sla de post op en bewaar het resultaat in $sql
      if($sql)
      {
      	echo '<script>alert("post inserted successfully..");</script>';
@@ -250,7 +251,6 @@ function timeAgo($time_ago){
   
   
                
- <span class="glyphicon glyphicon-user" aria-hidden="true"></span><?php echo $userRow['name']; ?>
  
  </a>
  </li>
@@ -335,27 +335,23 @@ function timeAgo($time_ago){
 
             <!--left-content-->
 						<?php 
-						$uid=$_SESSION["usr_id_p"];
-                            $sql=mysqli_query($con,"select * from posts where usr_id_p='$uid' order by posts.status_time desc");
-                            $sql2=mysqli_query($con,"select * from registration where usr_id='$uid'");
-                            while($row3=mysqli_fetch_array($sql2))
-                            {
-                              $im=$row3['image']; 
-                            }
+						$num_rec_per_page=10;
+						if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; }; 
+                          $start_from = ($page-1) * $num_rec_per_page; 
+                            $sql=mysqli_query($con,"select * from posts inner join registration on posts.usr_id_p=registration.usr_id where usr_id_p='$uid' order by posts.status_time desc limit  $start_from, $num_rec_per_page");
                              while($row=mysqli_fetch_array($sql))
                                {
      	                           $id=$row["post_id"];
      	                           $time=$row["status_time"];
 
-//  toon op regel 369 de status title ipv de puntjes
-						echo '<div class="post-show" style="width:90%;border-radius:5px;margin-top:5px">
+						echo '<div class="post-show" style="width:90%;border-radius:5px">
 									<div class="post-show-inner">
 										<div class="post-header">
 											<div class="post-left-box">
-												<div class="id-img-box"><img src="user_images/'.$im.'"></img></div>
+												<div class="id-img-box"><a href="otheruser.php?userid='.$row['usr_id'].'"><img src="user_images/'.$row['image'].'"></a></img></div>
 												<div class="id-name">
 													<ul>
-													<b>	'.$row['name'].' </b>
+													<b><a href="otheruser.php?userid='.$row['usr_id'].'">	'.$row['name'].'</a> </b>
 														<li><small>'.timeAgo($time).'</small></li>
 													</ul>
 												</div>
@@ -365,8 +361,8 @@ function timeAgo($time_ago){
 									
 											<div class="post-body">
 											<div class="post-header-text">
-							 <a href="project_description.php?id='.$post_id.'&s_title=' . $row['status'] . '">
-							  ............</a>
+							 <a href="project_description.php?id='.$id.'&s_title=' . $row['status'] . '">
+							  '.$row['status_title'].'</a>
 							  
 							  
 							                <p>'.$row["status"].'</p>
@@ -385,9 +381,7 @@ function timeAgo($time_ago){
 										     {
                                                  $n=$row2["name"];
                                                  $img=$row2["image"];
-											 }
-
-
+										     }
 										echo '<div style="margin-left:50px">
 										<img style="height:20px; width="20px" src="user_images/'.$img.'"></img>
 										&nbsp; &nbsp;'.$c.'
@@ -408,7 +402,7 @@ function timeAgo($time_ago){
 								</div></div> ';	
      	                           
                                }
-							
+     
      
                               ?>
 

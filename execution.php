@@ -6,8 +6,7 @@
     {
 
          $del_id=$_GET["yesdelete"];
-         
-         $sql1="delete * from notification where post_usr='$uid'";
+         // verwijder de notification
 
         
          if($result)

@@ -4,7 +4,7 @@
 <?php
   session_start();
 
-  if($_SESSION['usr_id']=='')
+  if($_SESSION['name']=='')
   {
      header('location:reg.php');
   }
@@ -15,8 +15,7 @@
   {  
   	 $status_tit=$_POST["status_title"];
      $sta=$_POST["status"];
-	 $uid=$_SESSION["usr_id"];
-	 $name=$_SESSION["name"];
+     $uid=$_SESSION["id"];
      $sql=mysqli_query($con,"insert into posts(usr_id_p,status_title,status,status_image,status_time) 
      	values('$uid','$status_tit','$sta','',now());");
      if($sql)
@@ -32,7 +31,7 @@ $skill=$_POST["skill"];
 $experience=$_POST["experience"];
 $project=$_POST["project"];
 
-mysqli_query($con,"UPDATE REGISTRATION SET skill='$skill',experience='$experience',project='$project' where name='$_SESSION[name]'");
+mysqli_query($con,"UPDATE REGISTRATION SET skill='".$skill."',experience='".$experience."',project='".$project."' where name='".$_SESSION['name']."'");
 
 
 
@@ -278,7 +277,7 @@ function timeAgo($time_ago){
  
  -->
  <li>
-  <a href="my_task.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
+  <a href="mytask.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
  </li>
  
  <li>
@@ -355,7 +354,7 @@ function timeAgo($time_ago){
 
 <?php
 
-	$sql="SELECT * FROM registration WHERE name='$_SESSION[name]'";
+	$sql="SELECT * FROM `registration` WHERE `name`='".$_SESSION['name']."'";
 	
 	$result = $con->query($sql);
 	
@@ -408,7 +407,7 @@ function timeAgo($time_ago){
 <div class="col-lg-8">
 	<div class="panel panel-default">
 <?php		
-$sql=mysqli_query($con,"select * from registration where name='$_SESSION[name]'");
+$sql=mysqli_query($con,"select * from registration where name='".$_SESSION['name']."'");
 
 $res=mysqli_fetch_array($sql);
 

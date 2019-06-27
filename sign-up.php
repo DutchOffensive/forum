@@ -7,7 +7,6 @@ if(isset($_POST['btn-signup']))
 	$uname = strip_tags($_POST['txt_uname']);
 	$umail = strip_tags($_POST['txt_umail']);
 	$upass = strip_tags($_POST['txt_upass']);
-	$passwordHash = password_hash($upass, PASSWORD_DEFAULT);
 	$pic=$_FILES["img"]["name"];
     $tmp=$_FILES["img"]["tmp_name"];
     $type=$_FILES["img"]["type"];
@@ -41,7 +40,7 @@ if(isset($_POST['btn-signup']))
 	else
 	{
 		//$sql="insert into registration values();"
-		$sql= mysqli_query($con,"insert into registration(name,email,image,password) values('$uname','$umail','$pic','$passwordHash')");
+		$sql= mysqli_query($con,"insert into registration(name,email,image,password) values('$uname','$umail','$pic','$upass')");
 		if($sql)
 		{  
             move_uploaded_file($tmp,$path);

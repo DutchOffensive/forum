@@ -118,6 +118,7 @@
 
  
  </div>
+ </div>
  </nav>
  
  
@@ -220,7 +221,7 @@
  
  -->
  <li>
-  <a href="my_task.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
+  <a href="mytask.php"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> My Task</a>
  </li>
  
  <li>

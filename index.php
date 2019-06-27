@@ -75,23 +75,24 @@ function timeAgo($time_ago){
   {
       $email=$_POST["txt_uname_email"];
       $pass=$_POST["txt_password"];
-      
-      $result=mysqli_query($con,"select * from registration where email='$email'");
-      if(mysqli_num_rows($result))
+      $sql="select * from registration where email='$email'";
+      $result=mysqli_query($con,$sql);
+     // selecteer de registratie voor controle 
+      if(mysqli_num_rows($result) == 1)
       {
-			$row = mysqli_fetch_assoc($result);
-			//echo '<br>' . $row["password"] . '<br>';
-			if (password_verify($pass , $row["password"])) {
-                $name=$row["name"];
-                $id=$row["usr_id"];
-                session_start();
-                $_SESSION["name"]=$name;
-                $_SESSION["id"]=$id;
-                $_SESSION["email"]=$email;  
-                header("location:user.php");                     
-            }
+          while($row=mysqli_fetch_array($result))
+          {   
+              $name=$row["name"];
+              $id=$row["usr_id"];
+              session_start();
+              $_SESSION["name"]=$name;
+              $_SESSION["id"]=$id;
+              $_SESSION["email"]=$email;
+              
+          }
 		  
 		echo "<script>location.href='user.php';</script>";
+        header('location:user.php');
 
       }
       else{
@@ -110,7 +111,6 @@ if(isset($_POST['btn-signup']))
 	$uname = strip_tags($_POST['txt_uname']);
 	$umail = strip_tags($_POST['txt_umail']);
 	$upass = strip_tags($_POST['txt_upass']);
-	$passwordHash = password_hash($upass, PASSWORD_DEFAULT);
 	$pic=$_FILES["img"]["name"];
     $tmp=$_FILES["img"]["tmp_name"];
     $type=$_FILES["img"]["type"];
@@ -143,7 +143,7 @@ if(isset($_POST['btn-signup']))
 	else
 	{
 		//$sql="insert into registration values();"
-		$sql= mysqli_query($con,"insert into registration(name,email,image,password) values('$uname','$umail','$pic','$passwordHash')");
+		$sql= mysqli_query($con,"insert into registration(name,email,image,password) values('$uname','$umail','$pic','$upass')");
 		if($sql)
 		{  
             move_uploaded_file($tmp,$path);

@@ -35,7 +35,7 @@
     $sql1= mysqli_query($con,"insert into notification(pos_id,post_usr,comm_user,comment,status,time) 
       values('$p_id','$comenterid','$uid','$com',0,now())");
    //$sql=mysqli_query($con,"insert into comments(post_id_c,user_id_c,comment,comment_time) values('$p_id','$uid','$com',now())");
-    if($sql1)
+    if($sql)
     {
       header("location:user.php");
 

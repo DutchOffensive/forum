@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,13 +43,9 @@
  <span class="icon-bar"></span>
  </button>
  </div>
+</div>
  <div id="navbar" class="navbar-collapse collapse">
-  
-  
     <label class="navbar-text text-center text-primary" style="vertical-align:10px;font-size:medium ">HelpEachOther</label>
-    
-    
-    
      </div>
      
      
@@ -76,7 +71,7 @@
 		<div class="modal-body">
 			
             <!-- content goes here -->
-			   				 					<form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data">
 
 			   						
               <div class="form-group">
@@ -104,24 +99,24 @@
 					<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
 				</div>
 				<div class="btn-group" role="group">
-					<button type="submit" name="submit"  class="btn btn-default btn-hover-green" value="Post">Post</button>
+					<button type="submit" name="submit" class="btn btn-default btn-hover-green" value="Post">Post</button>
 				</div>
 			</div>
 		</div>
 	
+	
+            	
+            </form>
 		
-
-					
-
-		</div>
+        </div>
+      </div>
+    </div>
+    </div>
+   
 		
+	
 
-		
-	</div>
-  </div>
-</div>
-
-  		</form>
+  		
  
  
  
@@ -198,3 +193,4 @@
 	
 
 </body>
+</html>
