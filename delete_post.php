@@ -18,7 +18,7 @@ if($_SESSION['name']=='')
  {  
  	$ps_id=$_GET['pid'];
  	// verwijder de post
-   $sql3=mysqli_query($con,"delete * from comments where post_id='$ps_id'");
+   $sql3=mysqli_query($con,"delete from comments where post_id='$ps_id'");
        
       if($sql3)
       {
